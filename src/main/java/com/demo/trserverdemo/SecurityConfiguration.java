@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -25,34 +26,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // Set configuration on auth object;
         auth.userDetailsService(userDetailsService);
-//        auth.jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .usersByUsernameQuery("select USERNAME, PASSWORD, ENABLED "
-//                + "from USERS "
-//                + "where username = ?")
-//                .authoritiesByUsernameQuery("select USERNAME, AUTHORITY "
-//                + "from AUTHORITIES "
-//                + "where USERNAME = ?");
-//                .withDefaultSchema()
-//                .withUser(
-//                        User.withUsername("user")
-//                        .password("pass")
-//                        .roles("USER")
-//                )
-//                .withUser(User.withUsername("admin")
-//                        .password("pass")
-//                        .roles("ADMIN")
-//                );
-
-//                .inMemoryAuthentication()
-//                .withUser("blah")
-//                .password("blahblah")
-//                .roles("USER")
-//                .and()
-//                .withUser("foo")
-//                .password("foo")
-//                .roles("ADMIN");
-
+    }
+    
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**"); // #3
     }
 
     @Override
