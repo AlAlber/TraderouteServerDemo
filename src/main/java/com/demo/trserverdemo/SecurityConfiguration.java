@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // Set configuration on auth object;
         auth.userDetailsService(userDetailsService);
     }
-    
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
@@ -42,6 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/").permitAll()
                 .and().formLogin();
+        http.requiresChannel().anyRequest().requiresSecure();
     }
     @Bean
     public PasswordEncoder getPasswordEncoder(){
