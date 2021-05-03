@@ -39,7 +39,7 @@ which is its usual source.
 
 ## Security Related Features
 <ol>
-<li><p>
+<li>
 This Trade Route sample server leverages the capabilities of
 spring and adds a few extra features on it like forced https requests and authorizes users
 through roles which are assigned to them in the in-memory database. In the future this is how I will
@@ -50,9 +50,9 @@ Failed requests are returned with error codes 401/403 which happen when
 a user is not authenticated, meaning their username and password dont fit
 or when they are not authorized, like when a regular user tries to access
 /admin endpoint. 
-</p></li>
+</li>
 
-<li><p>
+<li>
 Spring Security uses a Servlet Filterchain to process Http requests. Before 
 any request comes in, it goes in a specific order 15 filters before arriving at the 
 @RestControllers. An example of one of these filters is the DefaultLoginPageGeneratingFilter
@@ -60,28 +60,28 @@ which is created as soon as the spring security dependency is added to maven. Th
 ensures that as soon as a a request is made, a default login screen is added on the restricted 
 endpoints which are configured in the configure(http) method in the SecurityConfiguration.java
 class.
-<p></li>
+</li>
 
-<li><p>
+<li>
 Http requests are redirected to https , by generating a pair of cryptographic keys
 to create an SSL certificate which is stored at keystore.jks in the resources
 folder. The configure(HttpSecurity http) method ensures that everyone can 
 access the blank default landing page but that admins are allowed to access admin and 
 user content, while users are only allowed to access user content.
-<\p></li>
+</li>
 
-<li><p>
+<li>
 The configure(web) method in SecurityConfiguration.java class ensures that all requests to the
 resources folder are ignored so if in the future functionality is added to access resources
 from that folder, then application users still won't be able to access it.
-<\p></li>
+</li>
 
-<li><p>
+<li>
 Another security feature which is not used when the steps in the above `Setup Information`
 section is followed, is protection from SQL injection attacks. The user details service
 uses the loadByUserName() method in MyUserDetailsService uses the method findByUserName()
 which is essentially like a parametrized query that spring JPA provides. 
-<\p></li>
+</li>
 
 </ol>
 
