@@ -19,13 +19,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserDetailsService userDetailsService;
+
 //    @Autowired
 //    DataSource dataSource;
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // Set configuration on auth object;
         auth.userDetailsService(userDetailsService);
+
+//        auth.jdbcAuthentication()
+//                .dataSource(dataSource)
+//                .usersByUsernameQuery("select USERNAME, PASSWORD, ENABLED "
+//                + "from USERS "
+//                + "where username = ?")
+//                .authoritiesByUsernameQuery("select USERNAME, AUTHORITY "
+//                + "from AUTHORITIES "
+//                + "where USERNAME = ?");
     }
 
     @Override
@@ -41,7 +52,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasRole("ADMIN") // only admins can access admin resources
                 .antMatchers("/user").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/").permitAll()
-                .and().formLogin();
+                .and().formLogin()
+                .and().csrf().disable();
         http.requiresChannel().anyRequest().requiresSecure();
     }
     @Bean

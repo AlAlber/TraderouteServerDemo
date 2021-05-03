@@ -9,6 +9,9 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * This class is currently in charge of rerouting requests through https.
+ */
 @Configuration
 public class ServerConfig {
     @Bean
@@ -28,9 +31,6 @@ public class ServerConfig {
         return tomcat;
     }
 
-    /**
-     * Reroutes all requests through secure port
-     */
     private Connector getHttpConnector() {
         Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
         connector.setScheme("http");

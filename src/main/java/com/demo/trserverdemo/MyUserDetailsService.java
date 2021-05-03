@@ -18,6 +18,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        // The findByUserName is Spring JPA's protection against SQL injection
         Optional<User> user = userRepository.findByUserName(userName);
 
         user.orElseThrow(()-> new UsernameNotFoundException("Not found: "+ userName));
