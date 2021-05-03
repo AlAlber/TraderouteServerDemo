@@ -15,7 +15,6 @@ make the program run an H2 database instead of the unreachable mysql schema inst
 which is its usual source. 
 </p>
 
-
 ## Security Related Features
 <ol>
 <li><p>
@@ -73,7 +72,6 @@ told me that all my files had been deleted. Therefore I decided to extract this
 into its own practice mini project, which will make it much easier for me 
 to integrate into the traderoute project later on. 
 </p>
-https://tinyurl.com/w8eu7kcy
 <p>
 Furthermore, I've created a [separate repo](https://github.com/AlAlber/TRServerDemo2) for my attempts at implementing an OAuth2.0
 OIDC authorization flow with the provider Okta where I unfortunately couldn't get the 
