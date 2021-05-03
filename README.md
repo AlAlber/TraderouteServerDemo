@@ -4,6 +4,24 @@
 ## Threat Model
 [Link to Threat Model](https://tinyurl.com/w8eu7kcy)
 
+## Trade Route General Information
+
+<p> Trade Route is a desktop Java application with JavaFX front-end and, hopefully soon, a Spring Boot backend.
+Trade Route is an application for small-time food producers which do not have large sales teams. It
+was created to give them an application which provides most of the functionality that a sales team would,
+like planning, projecting and strategizing on different routes to bring a product to market. The application
+makes use of roles because the company manager or owner is able to see the precise monetary
+calculation while regular employees will tyically see comparative indexes, allowing them to still read and write
+data but in a different format. Due to this, in the future I plan to add Okta OAuth Open Id to the application.
+Unfortunately I was unable to add the implementation here to the original traderoute code base
+because when trying to integrate spring boot and changing my java
+version to fit the spring java version, I ran into a git problem which told me 
+all my files had been deleted. Therefore I decided to extract this
+into its own practice mini project, which will make it much easier for me 
+to integrate into the traderoute project later on. </p>
+
+
+
 ## Setup Information
 
 <p>
@@ -13,6 +31,10 @@ six lines of application.properties.
 Then, uncommenting lines 23, 24 and 31-38 in the SecurityConfiguration.java will
 make the program run an H2 database instead of the unreachable mysql schema instance 
 which is its usual source. 
+</p>
+
+<p>Try navigating to the localhost:8080/user or localhost:8080/admin endpoitns
+  with credentials user:pass and admin:pass to discover the main features that have been implemented.
 </p>
 
 ## Security Related Features
@@ -65,15 +87,7 @@ which is essentially like a parametrized query that spring JPA provides.
 
 ## Remarks
 <p>
-Unfortunately I was unable to add this to the original traderoute code base
-because when trying to integrate spring boot and changing my java
-version to fit the spring java version, I ran into a problem with git where git 
-told me that all my files had been deleted. Therefore I decided to extract this
-into its own practice mini project, which will make it much easier for me 
-to integrate into the traderoute project later on. 
-</p>
-<p>
-Furthermore, I've created a [separate repo](https://github.com/AlAlber/TRServerDemo2) for my attempts at implementing an OAuth2.0
+I've also created a [separate repo](https://github.com/AlAlber/TRServerDemo2) for my attempts at implementing an OAuth2.0
 OIDC authorization flow with the provider Okta where I unfortunately couldn't get the 
 server to run because it cannot recognize the okta.oauth2.issuer in the application.properties
 and I wasn't able to fix this in time. [This is the link](https://github.com/AlAlber/traderoute1) 
