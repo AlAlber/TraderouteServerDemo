@@ -52,8 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasRole("ADMIN") // only admins can access admin resources
                 .antMatchers("/user").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/").permitAll()
-                .and().formLogin()
-                .and().csrf().disable();
+                .and().formLogin();
         http.requiresChannel().anyRequest().requiresSecure();
     }
     @Bean
